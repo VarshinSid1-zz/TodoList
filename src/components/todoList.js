@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import TodoListTask from './todoListTask'
 import './../main.css'
+import { List } from 'material-ui/List'; 
+import {
+  Table,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+} from 'material-ui/Table';
 
 class TodoList extends Component {
 
@@ -17,7 +24,18 @@ class TodoList extends Component {
     });
     return (
       <div className="list">
-        <ul> {items} </ul>
+        <Table fixedHeader={true}>
+          <TableHeader displaySelectAll={false}
+                      adjustForCheckbox={false}>
+            <TableRow>
+              <TableHeaderColumn>Status</TableHeaderColumn>
+              <TableHeaderColumn>Task</TableHeaderColumn>
+              <TableHeaderColumn>Tags</TableHeaderColumn>
+              <TableHeaderColumn>Add Tags</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+        </Table>
+        <List> {items} </List>
       </div>
     );
   }

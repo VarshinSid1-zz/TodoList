@@ -1,5 +1,17 @@
 import React, { Component } from 'react'
 import './../main.css'
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import {
+    Table,
+    TableBody,
+    TableRow,
+    TableRowColumn,
+  } from 'material-ui/Table';
+  
+const style = {
+    marginRight: 20,
+  };
 
 class TodoListItem extends Component {
 
@@ -39,19 +51,24 @@ class TodoListItem extends Component {
         var todoClass = item.status ? 
             "done" : "undone";
         return(
-            <div className="task">
-                <div className={todoClass}>
-                    <input className="done-btn" aria-hidden="true" type="checkbox" onChange={this.onClickDone} defaultChecked={this.props.item.status}/>
-                    <span>{item.task}</span>
-                    {addTag ? 
+        <Table fixedHeader={true}>
+            <TableBody displayRowCheckbox={false}>
+                <TableRow>
+                    <TableRowColumn><input className="done-btn" aria-hidden="true" type="checkbox" onChange={this.onClickDone} defaultChecked={this.props.item.status}/></TableRowColumn>
+                    <TableRowColumn><span className={todoClass}>{item.task}</span></TableRowColumn>
+                    <TableRowColumn>{item.tags}</TableRowColumn>
+                    <TableRowColumn>{addTag ? 
                         <div>
                             <input value={this.state.inputValue} onChange={this.updateInputValue}/>
                             <button type="button" onClick={this.onSubmit}>add tag</button>
                         </div> :
-                        <button type="button" onClick={this.addTag}>+</button>}
-                    <span>{item.tags}</span>
-                </div>
-            </div>
+                        <FloatingActionButton onClick={this.addTag} mini={true} style={style}>
+                            <ContentAdd />
+                        </FloatingActionButton>
+                    }</TableRowColumn>
+                </TableRow>
+            </TableBody>
+        </Table>
         );
     }
 }

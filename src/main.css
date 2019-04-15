@@ -25,15 +25,19 @@ html, body {
   .list {
       display: flex;
       justify-content: center;
+      flex-direction: column;
+      margin: 20px 100px;
   }
   
   .done {
     color: green;
     text-decoration: line-through;
+    font-size: 18px;
   }
   
   .undone {
     color: blue;
+    font-size: 18px;
   }
 
   .done-btn {
