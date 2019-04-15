@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import TodoListPage from './todoListPage'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 class App extends Component {
   render() {
@@ -9,7 +10,9 @@ class App extends Component {
         <div className="header">
           <h1>Todo List</h1>
         </div>
-        <TodoListPage />
+        <MuiThemeProvider>
+          <TodoListPage />
+        </MuiThemeProvider>
       </div>
     );
   }

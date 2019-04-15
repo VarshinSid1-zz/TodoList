@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import './main.css'
+import RaisedButton from 'material-ui/RaisedButton';
+
 class TodoForm extends Component {
     
     componentDidMount() {
@@ -18,8 +20,8 @@ class TodoForm extends Component {
     render () {
         return (
             <form ref="form" onSubmit={this.onSubmit}>
-                <input type="text" className="input-fields" ref="itemName" placeholder="add a new task..."/>
-                <button type="submit" className="add-btn">Add</button> 
+                    <input type="text" className="input-fields" ref="itemName" placeholder="add a new task..."/>
+                <RaisedButton type="submit" label="Add Task" primary={true}  />
             </form>
         );   
     }

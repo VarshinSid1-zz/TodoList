@@ -49,6 +49,7 @@ html, body {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    margin-top: 10px;
   }
 
   .task {
@@ -57,10 +58,12 @@ html, body {
   }
 
   .input-fields {
+    font-size: 16px;
     border-radius: 5px;
-    height: 28px;
+    height: 31px;
     padding: 2px;
-    border: 1px solid;
+    border: 1px solid blue;
+    margin-right: 10px;
   }
 
   .add-btn {
