@@ -31,6 +31,7 @@ class TodoList extends Component {
               <TableHeaderColumn>Status</TableHeaderColumn>
               <TableHeaderColumn>Task</TableHeaderColumn>
               <TableHeaderColumn>Tags</TableHeaderColumn>
+              <TableHeaderColumn>Select Tags</TableHeaderColumn>
               <TableHeaderColumn>Add Tags</TableHeaderColumn>
             </TableRow>
           </TableHeader>

@@ -8,7 +8,15 @@ import {
     TableRow,
     TableRowColumn,
   } from 'material-ui/Table';
-  
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+
+const selectTags = [
+    {value: 0, name: 'Work'},
+    {value: 1, name: 'Personal'},
+    {value: 2, name: 'Family'},
+  ];
+
 const style = {
     marginRight: 20,
   };
@@ -19,9 +27,35 @@ class TodoListItem extends Component {
         super(props);
         this.state = {
             addTag: false,
-            inputValue: ''
+            inputValue: '',
+            values: [],
         };
     }
+
+    handleChange = (event, index, values) => this.setState({values});
+
+  selectionRenderer = (values) => {
+    switch (values.length) {
+      case 0:
+        return '';
+      case 1:
+        return '1 tag selected';
+      default:
+        return `${values.length} tags selected`;
+    }
+  }
+
+  menuItems(selectTags) {
+    return selectTags.map((person) => (
+      <MenuItem
+        key={person.name}
+        insetChildren={true}
+        checked={this.state.values.indexOf(person.name) > -1}
+        value={person.name}
+        primaryText={person.name}
+      />
+    ));
+  }
 
     onClickDone = () => {
         var index = parseInt(this.props.index);
@@ -39,9 +73,9 @@ class TodoListItem extends Component {
     }
 
     onSubmit = () => {
-        const { inputValue } = this.state
+        const { inputValue, values } = this.state
         var index = parseInt(this.props.index);
-        this.props.addTags(index,inputValue);
+        this.props.addTags(index,values);
         this.setState({addTag: !this.state.addTag})
     }
 
@@ -56,16 +90,22 @@ class TodoListItem extends Component {
                 <TableRow>
                     <TableRowColumn><input className="done-btn" aria-hidden="true" type="checkbox" onChange={this.onClickDone} defaultChecked={this.props.item.status}/></TableRowColumn>
                     <TableRowColumn><span className={todoClass}>{item.task}</span></TableRowColumn>
-                    <TableRowColumn>{item.tags}</TableRowColumn>
-                    <TableRowColumn>{addTag ? 
-                        <div>
-                            <input value={this.state.inputValue} onChange={this.updateInputValue}/>
-                            <button type="button" onClick={this.onSubmit}>add tag</button>
-                        </div> :
-                        <FloatingActionButton onClick={this.addTag} mini={true} style={style}>
+                    <TableRowColumn>{item && item.tags && item.tags.join()}</TableRowColumn>
+                    <TableRowColumn>
+                        <SelectField
+                            multiple={true}
+                            hintText="Select a name"
+                            value={this.state.values}
+                            onChange={this.handleChange}
+                            selectionRenderer={this.selectionRenderer}>
+                            {this.menuItems(selectTags)}
+                        </SelectField>
+                    </TableRowColumn>
+                    <TableRowColumn>
+                        <FloatingActionButton onClick={this.onSubmit} mini={true} style={style}>
                             <ContentAdd />
                         </FloatingActionButton>
-                    }</TableRowColumn>
+                    </TableRowColumn>
                 </TableRow>
             </TableBody>
         </Table>

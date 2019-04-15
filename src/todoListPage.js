@@ -6,8 +6,9 @@ class TodoListPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            todoList: [{taskId: 1, task: "eat", status: false, tags:[] },
-                        {taskId: 2, task: "drink water", status: true, tags:[] }]
+            todoList: [{taskId: 1, task: "Meeting", status: false, tags:[] },
+                        {taskId: 2, task: "Dinner", status: false, tags:[] },
+                        {taskId: 2, task: "Client Meeting", status: false, tags:[] }]
         };
     }
 
@@ -33,13 +34,11 @@ class TodoListPage extends Component {
     }
 
     addTags = (taskId,tag) => {
-        console.log("inmain : ",taskId, tag)
         const { todoList } = this.state
         const task = todoList[taskId]
         todoList.splice(taskId, 1);
         task.tags = tag
         task.status ? todoList.push(task) : todoList.unshift(task);
-        console.log("todo: ", todoList)
         this.setState({todoList: todoList});  
     }
 
