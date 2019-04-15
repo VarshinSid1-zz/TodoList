@@ -1,0 +1,70 @@
+html, body {
+    height: 100%;
+    color: black;
+    background-color: aliceblue;
+  }
+  
+  h1 {
+    margin: 20px 0 15px 0;  
+  }
+  
+  #main {
+    width: 600px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  ul>li:hover {
+    background-color: #F5F5F5;
+  }
+
+  .list {
+      display: flex;
+      justify-content: center;
+  }
+  
+  .done {
+    color: green;
+    text-decoration: line-through;
+  }
+  
+  .undone {
+    color: blue;
+  }
+
+  .done-btn {
+    height: 15px;
+    width: auto;
+  }
+  
+  .header {
+      background-color: aquamarine;
+  }
+
+  .todo-body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .task {
+    display: flex;
+    justify-content: space-between
+  }
+
+  .input-fields {
+    border-radius: 5px;
+    height: 28px;
+    padding: 2px;
+    border: 1px solid;
+  }
+
+  .add-btn {
+    border-radius: 5px;
+    height: 28px;
+    background-color: aliceblue;
+  }
